@@ -99,11 +99,6 @@ For more information regarding the robot design, please contact:
 
 This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlist by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured).
 
-I would also like to thank my teammates Mohamed Yassine Nefzi and Jawher Djebbi for their help and contribution to the project.
-
-## License
-
-DDR-SLAM is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
