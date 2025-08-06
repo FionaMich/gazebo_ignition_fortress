@@ -104,18 +104,23 @@ def generate_launch_description():
     )
 
     # static tf2 broadcasters for model sensors
+    # These transforms map from the sensor frames to the Gazebo sensor frames
+    # The lidar is positioned at (0.15, 0, 0.15) relative to chassis, which is at (-0.1, 0, 0) relative to base_link
+    # So lidar is at (0.05, 0, 0.15) relative to base_link
     lidar_broadcaster = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='lidar_static_transform_publisher',
-        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'lidar_frame', '--child-frame-id', 'ppp_bot/base_link/gpu_lidar']
+        arguments = ['--x', '0.05', '--y', '0', '--z', '0.15', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'lidar_frame', '--child-frame-id', 'ppp_bot/base_link/gpu_lidar']
     )
 
+    # The camera is positioned at (0.305, 0, 0.08) relative to chassis, which is at (-0.1, 0, 0) relative to base_link
+    # So camera is at (0.205, 0, 0.08) relative to base_link
     camera_broadcaster = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='camera_static_transform_publisher',
-        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'camera_link', '--child-frame-id', 'ppp_bot/base_link/camera']
+        arguments = ['--x', '0.205', '--y', '0', '--z', '0.08', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'camera_link', '--child-frame-id', 'ppp_bot/base_link/camera']
     )
 
     return LaunchDescription([
