@@ -95,8 +95,6 @@ Some steps have already been taken by making an initial design of our differenti
 
 For more information regarding the robot design, please contact:
 
-Mohamed Yassine Nefzi ynyassine7@gmail.com
-
 ## Acknowledgements
 
 This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlist by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured).
@@ -111,5 +109,5 @@ DDR-SLAM is licensed under the MIT License. See the [LICENSE](LICENSE) file for 
 
 For any questions or feedback, please contact the author:
 
-Mouafak Dakhlaoui
-mouaffak9@gmail.com
+Michelle Fiona
+michelle.fiona.opiyo.ke@gmail.com
