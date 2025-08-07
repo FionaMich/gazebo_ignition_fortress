@@ -62,23 +62,65 @@ The system consists of several interconnected components:
 ## Installation Guide
 
 ### Prerequisites
-- Ubuntu 22.04 (or WSL2 with Ubuntu 22.04)
-- ROS2 Humble
-- Gazebo Fortress
+- Ubuntu 22.04 (or WSL2 with Ubuntu 22.04) - **Already Installed**
+- ROS2 Humble - **Already Installed**
 - Git
 
 ### Step-by-Step Installation
 
-1. **Install ROS2 Humble**
+1. **Install Gazebo Fortress**
+
+   **Step 1: Install Necessary Tools**
    ```bash
-   # Follow official ROS2 Humble installation guide
-   # https://docs.ros.org/en/humble/Installation.html
+   sudo apt-get update
+   sudo apt-get install lsb-release gnupg
    ```
 
-2. **Install Gazebo Fortress**
+   **Step 2: Add Ignition Gazebo Repository**
    ```bash
-   # Follow official Gazebo Fortress installation guide
-   # https://gazebosim.org/docs/fortress/install
+   sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+   sudo apt-get update
+   ```
+
+   **Step 3: Install Ignition Fortress**
+   ```bash
+   sudo apt-get install ignition-fortress
+   ```
+
+   **Step 4: Verify the Installation**
+   ```bash
+   ign gazebo
+   ```
+
+2. **Install Required ROS2 Packages**
+
+   Install all the dependencies listed in the package.xml:
+
+   ```bash
+   # Core ROS2 packages
+   sudo apt install ros-humble-ros-gz-sim ros-humble-ros-gz-bridge
+   
+   # SLAM and Navigation packages
+   sudo apt install ros-humble-slam-toolbox ros-humble-navigation2
+   
+   # Visualization and tools
+   sudo apt install ros-humble-rviz2 xterm
+   
+   # Robot control and utilities
+   sudo apt install ros-humble-twist-mux ros-humble-xacro
+   
+   # Build tools and testing
+   sudo apt install ros-humble-ament-cmake ros-humble-ament-lint-auto ros-humble-ament-lint-common
+   
+   # Launch tools
+   sudo apt install ros-humble-ros2launch
+   
+   # Additional packages for teleoperation (if needed)
+   sudo apt install ros-humble-teleop-twist-keyboard ros-humble-teleop-twist-joy ros-humble-joy
+   
+   # Update package list
+   sudo apt update
    ```
 
 3. **Create ROS2 Workspace**
@@ -87,17 +129,9 @@ The system consists of several interconnected components:
    cd ~/ros2_workspace/src
    ```
 
-4. **Clone Repository**
-   ```bash
-   git clone https://github.com/mouaff25/DDR-SLAM.git
-   cd DDR-SLAM
-   git submodule init
-   git submodule update
-   cd ..
-   mv DDR-SLAM ppp_bot
-   ```
 
-5. **Install Dependencies**
+
+3. **Install Dependencies**
    ```bash
    # Initialize rosdep (first time only)
    sudo rosdep init
@@ -111,19 +145,19 @@ The system consists of several interconnected components:
    rosdep install --from-paths src -y --ignore-src
    ```
 
-6. **Build the Workspace**
+4. **Build the Workspace**
    ```bash
    colcon build
    ```
 
-7. **Handle Controller Manager Error (if needed)**
+5. **Handle Controller Manager Error (if needed)**
    ```bash
    # If you encounter controller_manager related errors
    sudo apt install ros-humble-ros2-control ros-humble-ros2-controllers
    colcon build
    ```
 
-8. **Source the Workspace**
+6. **Source the Workspace**
    ```bash
    source ~/ros2_workspace/install/local_setup.bash
    ```
