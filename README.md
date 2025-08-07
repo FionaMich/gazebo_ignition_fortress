@@ -134,28 +134,28 @@ The system consists of several interconnected components:
 3. **Install Dependencies**
    ```bash
    # Initialize rosdep (first time only)
-   sudo rosdep init
-   rosdep update
-   
+sudo rosdep init
+rosdep update
+
    # Install package dependencies
-   export IGNITION_VERSION=fortress
-   cd ~/ros2_workspace/src
-   rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
-   cd ~/ros2_workspace
-   rosdep install --from-paths src -y --ignore-src
+export IGNITION_VERSION=fortress
+cd ~/ros2_workspace/src
+rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+cd ~/ros2_workspace
+rosdep install --from-paths src -y --ignore-src
    ```
 
 4. **Build the Workspace**
    ```bash
-   colcon build
-   ```
+colcon build
+```
 
 5. **Handle Controller Manager Error (if needed)**
    ```bash
    # If you encounter controller_manager related errors
-   sudo apt install ros-humble-ros2-control ros-humble-ros2-controllers
-   colcon build
-   ```
+sudo apt install ros-humble-ros2-control ros-humble-ros2-controllers
+colcon build
+```
 
 6. **Source the Workspace**
    ```bash
@@ -503,9 +503,9 @@ global_costmap:
 
 1. **Start Navigation** (in new terminal):
    ```bash
-   source ~/ros2_workspace/install/local_setup.bash
-   ros2 launch ppp_bot navigation.launch.py use_sim_time:=true
-   ```
+source ~/ros2_workspace/install/local_setup.bash
+ros2 launch ppp_bot navigation.launch.py use_sim_time:=true
+```
 
 2. **Set Initial Pose**:
    - In RViz2, click "2D Pose Estimate"
@@ -557,6 +557,145 @@ ros2 topic echo /cmd_vel
 ros2 param set /slam_toolbox resolution 0.025
 ros2 param set /slam_toolbox map_update_interval 2.0
 ```
+
+### Moving Teleoperation
+
+The robot can be controlled in real-time using teleoperation while the simulation is running. This allows for interactive exploration and testing of the SLAM system.
+
+#### Keyboard Teleoperation
+```bash
+# Start simulation with keyboard teleop
+ros2 launch ppp_bot launch_sim.launch.py use_teleop:=true use_joystick:=false
+```
+
+**Controls:**
+- `i` - Move forward
+- `,` - Move backward  
+- `j` - Turn left
+- `l` - Turn right
+- `k` - Stop
+
+#### Joystick Teleoperation
+```bash
+# Start simulation with joystick teleop
+ros2 launch ppp_bot launch_sim.launch.py use_teleop:=true use_joystick:=true
+```
+
+**Requirements:**
+- USB joystick connected
+- Joystick drivers installed (`ros-humble-joy`)
+
+#### Teleoperation Features
+- **Real-time Control**: Immediate response to input commands
+- **Velocity Control**: Smooth acceleration and deceleration
+- **Safety Limits**: Built-in velocity and acceleration limits
+- **Multiple Input Sources**: Support for keyboard and joystick
+- **Twist Multiplexing**: Priority-based command selection
+
+![Moving Teleoperation Demo](images/moving_teleop.mp4)
+
+### Video Recording
+
+Gazebo Ignition includes built-in video recording capabilities that can capture simulation sessions for analysis, documentation, or sharing.
+
+#### Recording a Simulation Session
+
+1. **Start Simulation**:
+   ```bash
+   ros2 launch ppp_bot launch_sim.launch.py
+   ```
+
+2. **Access Video Recorder**:
+   - In Gazebo GUI, locate the "VideoRecorder" plugin
+   - Click the record button to start recording
+   - The recording will capture the 3D view of the simulation
+
+3. **Stop Recording**:
+   - Click the stop button to end recording
+   - Video will be saved automatically
+
+#### Video Recording Features
+- **High Quality**: 4Mbps bitrate for clear recordings
+- **Simulation Time**: Records based on simulation time
+- **Multiple Formats**: Supports various video formats
+- **Real-time**: Records as simulation runs
+- **Customizable**: Adjustable quality and duration
+
+#### Example Recording
+![Video Recording Example](images/VideoRecording.mp4)
+
+#### Recording Tips
+- **Performance**: Recording may impact simulation performance
+- **Storage**: Videos can be large; ensure sufficient disk space
+- **Resolution**: Higher resolution = larger file sizes
+- **Duration**: Plan recording duration based on available storage
+
+### Generated Maps
+
+The SLAM system generates detailed occupancy grid maps that can be saved and reused for navigation and localization.
+
+#### Map Generation Process
+
+1. **Start SLAM**:
+   ```bash
+   ros2 launch ppp_bot launch_sim.launch.py world_name:=cones
+   ```
+
+2. **Explore Environment**:
+   - Use teleoperation to move the robot around
+   - SLAM will build the map in real-time
+   - Watch the map develop in RViz2
+
+3. **Save the Map**:
+   ```bash
+   # Save current map
+   ros2 run nav2_map_server map_saver_cli -f ~/my_generated_map
+   ```
+
+#### Generated Map Example
+![Generated SLAM Map](images/generated%20Map.png)
+
+#### Map Files Generated
+When you save a map, the following files are created:
+- **`.pgm`**: Occupancy grid map image
+- **`.yaml`**: Map metadata and parameters
+- **`.data`**: SLAM toolbox data (if using slam_toolbox)
+- **`.posegraph`**: Pose graph data for loop closure
+
+#### Map Characteristics
+- **Resolution**: 0.05 meters per pixel (configurable)
+- **Format**: Portable Graymap (PGM)
+- **Coordinate System**: ROS standard (x-forward, y-left, z-up)
+- **Occupancy Values**: 
+  - 0: Free space
+  - 100: Occupied space
+  - 255: Unknown space
+
+#### Using Generated Maps
+
+1. **For Localization**:
+   ```bash
+   ros2 launch ppp_bot launch_sim.launch.py world_name:=cones localization:=true
+   ```
+
+2. **For Navigation**:
+   ```bash
+   # Start navigation with your map
+   ros2 launch ppp_bot navigation.launch.py use_sim_time:=true
+   ```
+
+3. **Map Analysis**:
+   ```bash
+   # View map statistics
+   ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=/path/to/your/map.yaml
+   ```
+
+#### Map Quality Tips
+- **Complete Coverage**: Ensure robot explores entire area
+- **Loop Closure**: Drive in loops to improve map accuracy
+- **Consistent Speed**: Maintain steady movement for better mapping
+- **Multiple Passes**: Revisit areas to improve map quality
+- **Sensor Data**: Ensure LiDAR data is clean and consistent
 
 ## Troubleshooting
 
