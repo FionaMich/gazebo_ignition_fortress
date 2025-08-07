@@ -125,7 +125,13 @@ def generate_launch_description():
 
     return LaunchDescription([
         world_name_launch_arg,
-        SetEnvironmentVariable('IGN_GAZEBO_RESOURCE_PATH', models_dir),
+        SetEnvironmentVariable('LIBGL_ALWAYS_SOFTWARE', '1'),
+SetEnvironmentVariable('MESA_GL_VERSION_OVERRIDE', '3.3'),
+SetEnvironmentVariable('MESA_GLSL_VERSION_OVERRIDE', '330'),
+SetEnvironmentVariable('IGN_RENDERING_ENGINE_PATH', '/usr/lib/x86_64-linux-gnu/ign-rendering-6/engine-plugins'),
+SetEnvironmentVariable('IGN_RENDERING_ENGINE', 'ogre2'),
+SetEnvironmentVariable('DISPLAY', ':0'),
+SetEnvironmentVariable('QT_X11_NO_MITSHM', '1'),
         OpaqueFunction(function=launch_ign, args=[world_name]),
         robot_state_publisher,
         OpaqueFunction(function=spawn_entity, args=[world_name, robot_description]),
