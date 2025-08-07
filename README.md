@@ -1,4 +1,4 @@
-# DDR-SLAM: Comprehensive ROS2 Differential Drive Robot SLAM System
+Comprehensive ROS2 Differential Drive Robot SLAM System
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
