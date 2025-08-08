@@ -255,10 +255,6 @@ gazebo_fortress_robot/
 ### Robot Design
 The robot is a differential drive platform with the following specifications:
 
-| Front View | Interior View |
-|:---:|:---:|
-| ![Front View](images/robot_design1.jpg) | ![Interior View](images/robot_design2.jpg) |
-
 - **Chassis**: 30cm × 30cm × 15cm rectangular body
 - **Wheels**: Two 10cm diameter wheels with 35cm separation
 - **Caster Wheel**: Spherical caster for stability
@@ -716,36 +712,12 @@ When you save a map, the following files are created:
 
 This section showcases video demonstrations of the DDR-SLAM system in action, providing visual examples of the robot's capabilities and features.
 
-### Available Videos
 
-| Video | Description | File Size | Duration |
-|:---|:---|:---|:---|
-| **Moving Teleoperation Demo** | Real-time robot control with SLAM mapping | 19MB | ~2 minutes |
-| **Video Recording Example** | Gazebo simulation recording demonstration | 13MB | ~1.5 minutes |
+[Watch the demo video](https://github.com/FionaMich/gazebo_ignition_fortress/blob/main/images/moving_teleop.mp4)
 
-### Video 1: Moving Teleoperation Demo
 
-**File**: `images/moving_teleop.mp4`
+[Watch the demo video](https://github.com/FionaMich/gazebo_ignition_fortress/blob/main/images/VideoRecording.mp4)
 
-This video demonstrates the real-time teleoperation capabilities of the DDR-SLAM system:
-
-- **Keyboard Control**: Shows responsive robot movement using keyboard inputs
-- **SLAM Mapping**: Real-time map building as the robot explores
-- **Sensor Visualization**: LiDAR data and robot position tracking
-- **Interactive Control**: Immediate response to movement commands
-
-<video width="100%" controls>
-  <source src="https://github.com/FionaMich/gazebo_ignition_fortress/blob/main/images/moving_teleop.mp4" type="video/mp4">
-
-</video>
-
-### Video 2: Video Recording Example
-
-**File**: `images/VideoRecording.mp4`
-
-<video width="100%" controls>
-  <source src="https://github.com/FionaMich/gazebo_ignition_fortress/blob/main/images/VideoRecording.mp4" type="video/mp4">
-</video>
 
 
 ## Troubleshooting
