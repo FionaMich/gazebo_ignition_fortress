@@ -10,9 +10,10 @@
 7. [Launch Files](#launch-files)
 8. [Configuration Files](#configuration-files)
 9. [Usage Instructions](#usage-instructions)
-10. [Troubleshooting](#troubleshooting)
-11. [Development Guide](#development-guide)
-12. [Acknowledgements](#acknowledgements)
+10. [Video Demonstrations](#video-demonstrations)
+11. [Troubleshooting](#troubleshooting)
+12. [Development Guide](#development-guide)
+13. [Acknowledgements](#acknowledgements)
 
 ## Project Overview
 
@@ -58,6 +59,12 @@ The system consists of several interconnected components:
 4. **Navigation Stack**: Nav2 for path planning and control
 5. **Teleoperation**: Multiple input methods for robot control
 6. **Visualization**: RViz2 for real-time data visualization
+
+| Gazebo Ignition | RViz2 Visualization |
+|:---:|:---:|
+| ![Gazebo Ignition](images/ignition.png) | ![RViz2](images/rviz2.png) |
+
+The system uses Gazebo Ignition for physics simulation and RViz2 for visualization of sensor data, maps, and navigation information.
 
 ## Installation Guide
 
@@ -248,6 +255,10 @@ gazebo_fortress_robot/
 ### Robot Design
 The robot is a differential drive platform with the following specifications:
 
+| Front View | Interior View |
+|:---:|:---:|
+| ![Front View](images/robot_design1.jpg) | ![Interior View](images/robot_design2.jpg) |
+
 - **Chassis**: 30cm × 30cm × 15cm rectangular body
 - **Wheels**: Two 10cm diameter wheels with 35cm separation
 - **Caster Wheel**: Spherical caster for stability
@@ -301,6 +312,15 @@ The project includes four different simulation environments:
 - **Purpose**: Advanced navigation and SLAM testing
 - **Features**: Multiple corridors and dead ends
 - **Map**: Pre-built occupancy grid available
+
+### Available Worlds
+
+| World | Description | Preview |
+|:---:|:---:|:---:|
+| Cones World | Open space with construction cones | ![Cones World](images/cones_world.png) |
+| Room World | Simple rectangular room | ![Room World](images/room_world.png) |
+| Room with Cones | Room with cone obstacles | ![Room with Cones](images/room_with_cones_world.png) |
+| Maze World | Complex maze structure | ![Maze World](images/maze_world.png) |
 
 ### World Selection
 Worlds can be selected using the `world_name` parameter:
@@ -592,8 +612,6 @@ ros2 launch ppp_bot launch_sim.launch.py use_teleop:=true use_joystick:=true
 - **Multiple Input Sources**: Support for keyboard and joystick
 - **Twist Multiplexing**: Priority-based command selection
 
-![Moving Teleoperation Demo](images/moving_teleop.mp4)
-
 ### Video Recording
 
 Gazebo Ignition includes built-in video recording capabilities that can capture simulation sessions for analysis, documentation, or sharing.
@@ -620,9 +638,6 @@ Gazebo Ignition includes built-in video recording capabilities that can capture 
 - **Multiple Formats**: Supports various video formats
 - **Real-time**: Records as simulation runs
 - **Customizable**: Adjustable quality and duration
-
-#### Example Recording
-![Video Recording Example](images/VideoRecording.mp4)
 
 #### Recording Tips
 - **Performance**: Recording may impact simulation performance
@@ -696,6 +711,50 @@ When you save a map, the following files are created:
 - **Consistent Speed**: Maintain steady movement for better mapping
 - **Multiple Passes**: Revisit areas to improve map quality
 - **Sensor Data**: Ensure LiDAR data is clean and consistent
+
+## Video Demonstrations
+
+This section showcases video demonstrations of the DDR-SLAM system in action, providing visual examples of the robot's capabilities and features.
+
+### Available Videos
+
+| Video | Description | File Size | Duration |
+|:---|:---|:---|:---|
+| **Moving Teleoperation Demo** | Real-time robot control with SLAM mapping | 19MB | ~2 minutes |
+| **Video Recording Example** | Gazebo simulation recording demonstration | 13MB | ~1.5 minutes |
+
+### Video 1: Moving Teleoperation Demo
+
+**File**: `images/moving_teleop.mp4`
+
+This video demonstrates the real-time teleoperation capabilities of the DDR-SLAM system:
+
+- **Keyboard Control**: Shows responsive robot movement using keyboard inputs
+- **SLAM Mapping**: Real-time map building as the robot explores
+- **Sensor Visualization**: LiDAR data and robot position tracking
+- **Interactive Control**: Immediate response to movement commands
+
+<video width="100%" controls>
+  <source src="images/moving_teleop.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+### Video 2: Video Recording Example
+
+**File**: `images/VideoRecording.mp4`
+
+This video showcases Gazebo's built-in video recording feature:
+
+- **Simulation Recording**: Captures the 3D simulation environment
+- **Robot Movement**: Shows robot navigation and exploration
+- **SLAM Process**: Demonstrates map building in real-time
+- **Quality Recording**: High-quality simulation capture
+
+<video width="100%" controls>
+  <source src="images/VideoRecording.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ## Troubleshooting
 
