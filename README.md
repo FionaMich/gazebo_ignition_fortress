@@ -735,24 +735,16 @@ This video demonstrates the real-time teleoperation capabilities of the DDR-SLAM
 - **Interactive Control**: Immediate response to movement commands
 
 <video width="100%" controls>
-  <source src="images/moving_teleop.mp4" type="video/mp4">
-  Your browser does not support the video tag.
+  <source src="https://github.com/FionaMich/gazebo_ignition_fortress/blob/main/images/moving_teleop.mp4" type="video/mp4">
+
 </video>
 
 ### Video 2: Video Recording Example
 
 **File**: `images/VideoRecording.mp4`
 
-This video showcases Gazebo's built-in video recording feature:
-
-- **Simulation Recording**: Captures the 3D simulation environment
-- **Robot Movement**: Shows robot navigation and exploration
-- **SLAM Process**: Demonstrates map building in real-time
-- **Quality Recording**: High-quality simulation capture
-
 <video width="100%" controls>
-  <source src="images/VideoRecording.mp4" type="video/mp4">
-  Your browser does not support the video tag.
+  <source src="https://github.com/FionaMich/gazebo_ignition_fortress/blob/main/images/VideoRecording.mp4" type="video/mp4">
 </video>
 
 
