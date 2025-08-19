@@ -17,7 +17,7 @@ Comprehensive ROS2 Differential Drive Robot SLAM System
 
 ## Project Overview
 
-DDR-SLAM is a comprehensive ROS2-based project that implements Simultaneous Localization and Mapping (SLAM) for a differential drive robot. The project uses Gazebo Fortress as a simulation environment to test and validate the SLAM algorithm in various scenarios.
+This Differential Drive SLAM is a comprehensive ROS2-based project that implements Simultaneous Localization and Mapping (SLAM) for a differential drive robot. The project uses Gazebo Fortress as a simulation environment to test and validate the SLAM algorithm in various scenarios.
 
 ### Key Features
 - **Differential Drive Robot**: Custom-designed robot with LiDAR and camera sensors
