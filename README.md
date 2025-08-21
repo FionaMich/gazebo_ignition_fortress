@@ -139,18 +139,17 @@ The system uses Gazebo Ignition for physics simulation and RViz2 for visualizati
 
 
 3. **Install Dependencies**
-   ```bash
-   # Initialize rosdep (first time only)
+
+```bash
+# Initialize rosdep (first time only)
 sudo rosdep init
 rosdep update
 
-   # Install package dependencies
+# Install package dependencies
 export IGNITION_VERSION=fortress
 cd ~/ros2_workspace/src
-rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
-cd ~/ros2_workspace
-rosdep install --from-paths src -y --ignore-src
-   ```
+rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+
 
 4. **Build the Workspace**
    ```bash
@@ -158,11 +157,11 @@ colcon build
 ```
 
 5. **Handle Controller Manager Error (if needed)**
-   ```bash
-   # If you encounter controller_manager related errors
+
+```bash
 sudo apt install ros-humble-ros2-control ros-humble-ros2-controllers
 colcon build
-```
+
 
 6. **Source the Workspace**
    ```bash
